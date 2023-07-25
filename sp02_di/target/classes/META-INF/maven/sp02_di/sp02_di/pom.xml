@@ -5,9 +5,28 @@
 	<groupId>sp02_di</groupId>
 	<artifactId>sp02_di</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	
-	
-	
+	<properties>
+		<org.springframework-version>5.1.3.RELEASE</org.springframework-version>
+	</properties>
+
+	<dependencies>
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-context -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.26</version>
+			<scope>provided</scope>
+		</dependency>
+
+
+	</dependencies>
+
 	<build>
 		<sourceDirectory>src</sourceDirectory>
 		<plugins>
