@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean class="ex03.di.EmployeePersonImpl"  id="employee" c:name="jaejin" c:age="24" c:gender="여성" c:hobbys="독서, 영화보기, 달리기"/>
+	<bean class="ex03.di.StudentPersonImpl" id="student" p:name="준열" p:age="34" p:gender="남성" p:score="100, 50, 70"/>
+
+</beans>

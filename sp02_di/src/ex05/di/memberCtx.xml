@@ -6,7 +6,7 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 	<bean id="vo" class="ex05.di.MemberDTO"  c:name="김연아" c:message="반갑습니다." c:age="28"/>
-	<bean id="dao" class="ex05.di.MemberDAO" p:dto-ref="vo" />
+	<bean id="dao" name="xyz abc aa" class="ex05.di.MemberDAO" p:dto-ref="vo" />
 	
 
 	<!-- <bean id="vo" class="ex05.di.MemberDTO">
