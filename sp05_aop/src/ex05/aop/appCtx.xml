@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+	
+	<!-- 
+	콘솔 로그 출력 Advice 적용 순서
+	1.before
+	2.around (대상 메소드 수행 전)
+	3.대상 메소드 (ArithmeticException 예외가 발생한다)
+	4.afterThrowing
+	5.after(finally)
+	 -->
+	 
+	<bean class="ex05.aop.CalcImpl" id="calcImpl" /> 
+	<bean class="ex05.aop.LogPrintAroundAdvice" id="logPrintAroundAdvice" />
+	<bean class="ex05.aop.LogPrintBeforeAdvice" id="logPrintBeforeAdvice" />
+	<bean class="ex05.aop.LogPrintThrowingAdvice" id="logPrintThrowingAdvice" />
+	<bean class="ex05.aop.LogPrintAfterAdvice" id="logPrintAfterAdvice" />
+	 
+	<bean class="org.springframework.aop.framework.ProxyFactoryBean" id="proxy">
+		<property name="proxyInterfaces">
+			<list>
+				<value>ex05.aop.ICalc</value>   <!-- 인터페이스 -->
+			</list>
+		</property>
+		<property name="target" ref="calcImpl" />
+		<property name="interceptorNames">
+			<list>
+				<!-- <value>logPrintAroundAdvice</value> -->   <!-- handler : 보조업무 -->
+				<!-- <value>logPrintBeforeAdvice</value> -->
+				<!-- <value>logPrintThrowingAdvice</value> -->
+				<value>logPrintAfterAdvice</value>
+			</list>
+		</property>
+	</bean>
+
+</beans>
