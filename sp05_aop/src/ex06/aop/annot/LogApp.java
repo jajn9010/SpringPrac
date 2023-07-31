@@ -29,6 +29,13 @@ public class LogApp {
 	public void pointCut() {
 	};
 
+	@Before("pointCut()")
+	public void beforeAdvice() {
+		System.out.println("beforeAdvice");
+		System.out.println("입학과 입사를 축하합니다.");
+		
+	}
+	
 	@Around("pointCut()")
 	public Object loggerApp(ProceedingJoinPoint point) throws Throwable {
 
@@ -45,12 +52,5 @@ public class LogApp {
 		System.out.println(signatureStr + "경과시간 : " + (end - st));
 
 		return obj;
-	}
-
-	@Before("pointCut()")
-	public void beforeAdvice() {
-		System.out.println("beforeAdvice");
-		System.out.println("입학과 입사를 축하합니다.");
-
 	}
 }
