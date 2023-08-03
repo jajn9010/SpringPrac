@@ -1,6 +1,7 @@
 package com.kosa.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Component;
@@ -32,6 +33,74 @@ public class BoardDAO {
 			sqlSession.insert("dao.insert", vo);
 			sqlSession.commit();
 			return 1;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return 0;
+		} finally {
+			if(sqlSession != null) sqlSession.close();
+		}
+	}
+	
+	//detail
+	public BoardVO detailList(int seq) {
+		try {
+			sqlSession = sqlSessionFactory.getSqlSessionFactory().openSession();
+			return sqlSession.selectOne("dao.detailList", seq);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+			if(sqlSession != null) sqlSession.close();
+		}
+	} // end detail
+	
+	//update
+	public int update(BoardVO vo) {
+		try {
+			sqlSession = sqlSessionFactory.getSqlSessionFactory().openSession();
+			int cnt = sqlSession.update("dao.update", vo);
+			sqlSession.commit();
+			return cnt;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return 0;
+		} finally {
+			if(sqlSession != null) sqlSession.close();
+		}
+	}
+	
+	//전체 검색 조회 - 1
+	public List<BoardVO> selectSearchList(Map<String, String> map) {
+		try {
+			sqlSession = sqlSessionFactory.getSqlSessionFactory().openSession();
+			return sqlSession.selectList("dao.selectSearch", map);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+			if(sqlSession != null) sqlSession.close();
+		}
+	}
+	
+	//전체 검색 조회 - 2
+	public List<BoardVO> selectSearchList2(Map<String, String> map) {
+		try {
+			sqlSession = sqlSessionFactory.getSqlSessionFactory().openSession();
+			return sqlSession.selectList("dao.selectSearch2", map);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+			if(sqlSession != null) sqlSession.close();
+		}
+	}
+	
+	public int delete(int seq) {
+		try {
+			sqlSession = sqlSessionFactory.getSqlSessionFactory().openSession();
+			int count = sqlSession.delete("dao.delete", seq);
+			sqlSession.commit();
+			return count;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return 0;

@@ -7,7 +7,7 @@
 <title>detail.jsp 상세보기 페이지</title>
 </head>
 <body>
-<form action="../board?cmd=update"   method="post">
+<form action="board?cmd=update"   method="post">
 		번호 : <input type="text"  name="seq"  value="${ dto.seq }"  readonly="readonly"> <br> 
 		제목 : <input type="text"  name="title"  value="${ dto.title }"> <br> 
 		작성자 : <input type="text"  name="writer" value="${ dto.writer }"> <br> 
