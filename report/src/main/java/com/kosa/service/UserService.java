@@ -4,4 +4,6 @@ import java.util.Map;
 
 public interface UserService {
 	public int insertUser(Map<String, String> map);
+	public Map<String, Object> selectUser(String userid);
+	public void update(Map<String, Object> map2);
 }

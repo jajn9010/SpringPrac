@@ -53,8 +53,36 @@ public class UserController {
 	}
 	
 	@RequestMapping("/user/updateForm.do")
-	public String update(Model model, @RequestParam String userid) {
+	public String updateForm(Model model, @RequestParam String userid) {
 		model.addAttribute(userid);
 		return "user/update";
+	}
+	
+	@RequestMapping("/user/update.do")
+	public String update(@RequestParam String userid,
+						 @RequestParam String passwd,
+						 @RequestParam String changePwd,
+						 @RequestParam String changeCheckPwd) {
+		
+		Map<String, Object> map = userService.selectUser(userid);
+		
+		
+		String userPw = (String) map.get("PASSWORD");
+		String checkPw = shaEncoder.saltEncoding(passwd, userid);
+		String changePw = shaEncoder.saltEncoding(changePwd, userid);
+		
+		if(userPw.equals(checkPw)) {
+			if(changePwd.equals(changeCheckPwd)) {
+				Map<String, Object> map2 = new HashMap<String, Object>();
+				map2.put("userid", userid);
+				map2.put("pwd", changePw);
+				userService.update(map2);
+				return "user/login";
+			} else {
+				return "user/error";
+			}
+		} else {
+			return "user/error";
+		}
 	}
 }

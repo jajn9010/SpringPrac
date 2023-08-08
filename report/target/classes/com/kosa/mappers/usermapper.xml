@@ -8,4 +8,7 @@
 	<select id="selectUser" resultType="java.util.Map">
 		select usrid as username, pwd as password, role as authority from usr where usrid = #{userid}
 	</select>
+	<update id="updateUser" parameterType="java.util.Map">
+		update usr set pwd = #{pwd} where usrid = #{userid}
+	</update>
 </mapper>

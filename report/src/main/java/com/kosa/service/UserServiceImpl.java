@@ -17,4 +17,14 @@ public class UserServiceImpl implements UserService {
 		return sqlSession.insert("user.insertUser", map);
 	}
 
+	@Override
+	public Map<String, Object> selectUser(String userid) {
+		return sqlSession.selectOne("user.selectUser", userid);
+	}
+
+	@Override
+	public void update(Map<String, Object> map2) {
+		sqlSession.update("user.updateUser", map2);
+	}
+
 }
