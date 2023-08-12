@@ -2,15 +2,16 @@ package com.javassem.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.javassem.domain.SampleVO;
 
 //@Controller
@@ -54,5 +55,32 @@ public class SampleController {
     	System.out.println(vo);
     	System.out.println("[확인]");
     	return vo;
+    }
+    
+    @PostMapping("/post")
+    public void postSample(@RequestBody Map<String, Object> map) {
+    	//map.entrySet().forEach(objEntry ->{
+    	//	System.out.println("key : " + objEntry.getKey());
+    	//	System.out.println("value : " + objEntry.getValue());
+    	//});
+    	
+    	map.forEach((key, value) ->{
+        	System.out.println("key : " + key);
+        	System.out.println("value : " + value);
+        });
+    }
+    
+    @GetMapping(path = "/query-param")
+    public String queryParam2(SampleVO dto) {
+    	System.out.println(dto.getName());
+    	System.out.println(dto.getMessage());
+    	System.out.println(dto.getAge());
+    	
+    	return dto.toString();
+    }
+    
+    @DeleteMapping("/sample/delete/{name}")
+    public void delete(@PathVariable String name) {
+    	System.out.println(name);
     }
 }
