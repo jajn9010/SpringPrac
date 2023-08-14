@@ -39,9 +39,9 @@ public class BoardController {
 	}
 	
 	@GetMapping("/read/{seq}")
-	public String read(@PathVariable int seq) {
+	public BoardVO read(@PathVariable int seq) {
 		BoardVO vo = new BoardVO();
 		vo.setSeq(seq);
-		return boardDAO.getBoard(vo).toString();
+		return boardDAO.getBoard(vo);
 	}
 }

@@ -77,5 +77,6 @@ function insert() {
 		<textarea rows="10" cols="15" name="content"></textarea> <br />
 		<input type="button" value="전송하기" onclick="insert()">
 	</form>
+	<hr />
 </body>
 </html>
